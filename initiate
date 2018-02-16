@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for (( rs = 1; rs < 3; rs++ )); do
+for (( rs = 1; rs < 4; rs++ )); do
   echo "Intializing replica ${rs} set"
   docker-compose exec mongos1 bash -c "/tmp/wait-for-it.sh mongors${rs}n1:27018;/tmp/wait-for-it.sh mongors${rs}n2:27018;/tmp/wait-for-it.sh mongors${rs}n3:27018;"
   replicate="rs.initiate(); sleep(1000); cfg = rs.conf(); cfg.members[0].host = \"mongors${rs}n1:27018\"; sleep(1000);rs.reconfig(cfg); rs.add(\"mongors${rs}n2:27018\"); rs.addArb(\"mongors${rs}n3:27018\"); rs.status();"

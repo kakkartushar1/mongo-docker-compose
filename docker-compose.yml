@@ -2,7 +2,7 @@ version: "2"
 services:
 
   mongors1n1:
-    image: mongo:3.4
+    image: mongo
     command: mongod --noprealloc --smallfiles --replSet mongors1 --shardsvr --nojournal --oplogSize 16 --noauth --rest
     environment:
       TERM: xterm
@@ -13,7 +13,7 @@ services:
       - mongors1n1vol:/data/db
 
   mongors1n2:
-    image: mongo:3.4
+    image: mongo
     command: mongod --noprealloc --smallfiles --replSet mongors1 --shardsvr --nojournal --oplogSize 16 --noauth --rest
     environment:
       TERM: xterm
@@ -24,7 +24,7 @@ services:
       - mongors1n2vol:/data/db
 
   mongors1n3:
-    image: mongo:3.4
+    image: mongo
     command: mongod --noprealloc --smallfiles --replSet mongors1 --shardsvr --nojournal --oplogSize 16 --noauth --rest
     environment:
       TERM: xterm
@@ -35,7 +35,7 @@ services:
       - mongors1n3vol:/data/db
 
   mongors2n1:
-    image: mongo:3.4
+    image: mongo
     command: mongod --noprealloc --smallfiles --replSet mongors2 --shardsvr --nojournal --oplogSize 16 --noauth --rest
     environment:
       TERM: xterm
@@ -46,7 +46,7 @@ services:
       - mongors2n1vol:/data/db
 
   mongors2n2:
-    image: mongo:3.4
+    image: mongo
     command: mongod --noprealloc --smallfiles --replSet mongors2 --shardsvr --nojournal --oplogSize 16 --noauth
     environment:
       TERM: xterm
@@ -57,7 +57,7 @@ services:
       - mongors2n2vol:/data/db
 
   mongors2n3:
-    image: mongo:3.4
+    image: mongo
     command: mongod --noprealloc --smallfiles --replSet mongors2 --shardsvr --nojournal --oplogSize 16 --noauth
     environment:
       TERM: xterm
@@ -67,8 +67,41 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - mongors2n3vol:/data/db
 
+  mongors3n1:
+    image: mongo
+    command: mongod --noprealloc --smallfiles --replSet mongors3 --shardsvr --nojournal --oplogSize 16 --noauth --rest
+    environment:
+      TERM: xterm
+    expose:
+      - 27018
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - mongors3n1vol:/data/db
+
+  mongors3n2:
+    image: mongo
+    command: mongod --noprealloc --smallfiles --replSet mongors3 --shardsvr --nojournal --oplogSize 16 --noauth
+    environment:
+      TERM: xterm
+    expose:
+      - 27018
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - mongors3n2vol:/data/db
+
+  mongors3n3:
+    image: mongo
+    command: mongod --noprealloc --smallfiles --replSet mongors3 --shardsvr --nojournal --oplogSize 16 --noauth
+    environment:
+      TERM: xterm
+    expose:
+      - 27018
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - mongors3n3vol:/data/db
+
   mongocfg1:
-    image: mongo:3.4
+    image: mongo
     command: mongod --noprealloc --smallfiles --configsvr --replSet mongocfg1 --noauth
     environment:
       TERM: xterm
@@ -79,7 +112,7 @@ services:
       - mongocfg1vol:/data/configdb
 
   mongocfg2:
-    image: mongo:3.4
+    image: mongo
     command: mongod --noprealloc --smallfiles --configsvr --replSet mongocfg1 --noauth
     environment:
       TERM: xterm
@@ -90,7 +123,7 @@ services:
       - mongocfg2vol:/data/configdb
 
   mongocfg3:
-    image: mongo:3.4
+    image: mongo
     command: mongod --noprealloc --smallfiles --configsvr --replSet mongocfg1 --noauth
     environment:
       TERM: xterm
@@ -101,7 +134,7 @@ services:
       - mongocfg3vol:/data/configdb
 
   mongos1:
-    image: mongo:3.4
+    image: mongo
     depends_on:
       - mongocfg1
       - mongocfg2
@@ -114,7 +147,7 @@ services:
       - .:/tmp
 
   mongos2:
-    image: mongo:3.4
+    image: mongo
     depends_on:
       - mongocfg1
       - mongocfg2
@@ -133,6 +166,9 @@ volumes:
   mongors2n1vol:
   mongors2n2vol:
   mongors2n3vol:
+  mongors3n1vol:
+  mongors3n2vol:
+  mongors3n3vol:
   mongocfg1vol:
   mongocfg2vol:
   mongocfg3vol:
