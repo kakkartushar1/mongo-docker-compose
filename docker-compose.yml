@@ -3,7 +3,7 @@ services:
 
   mongors1n1:
     image: mongo
-    command: mongod --noprealloc --smallfiles --replSet mongors1 --shardsvr --nojournal --oplogSize 16 --noauth --rest
+    command: mongod --noprealloc --smallfiles --replSet mongors1 --shardsvr --nojournal --oplogSize 16 --noauth
     environment:
       TERM: xterm
     expose:
@@ -14,7 +14,7 @@ services:
 
   mongors1n2:
     image: mongo
-    command: mongod --noprealloc --smallfiles --replSet mongors1 --shardsvr --nojournal --oplogSize 16 --noauth --rest
+    command: mongod --noprealloc --smallfiles --replSet mongors1 --shardsvr --nojournal --oplogSize 16 --noauth
     environment:
       TERM: xterm
     expose:
@@ -25,7 +25,7 @@ services:
 
   mongors1n3:
     image: mongo
-    command: mongod --noprealloc --smallfiles --replSet mongors1 --shardsvr --nojournal --oplogSize 16 --noauth --rest
+    command: mongod --noprealloc --smallfiles --replSet mongors1 --shardsvr --nojournal --oplogSize 16 --noauth
     environment:
       TERM: xterm
     expose:
@@ -36,7 +36,7 @@ services:
 
   mongors2n1:
     image: mongo
-    command: mongod --noprealloc --smallfiles --replSet mongors2 --shardsvr --nojournal --oplogSize 16 --noauth --rest
+    command: mongod --noprealloc --smallfiles --replSet mongors2 --shardsvr --nojournal --oplogSize 16 --noauth
     environment:
       TERM: xterm
     expose:
@@ -69,7 +69,7 @@ services:
 
   mongors3n1:
     image: mongo
-    command: mongod --noprealloc --smallfiles --replSet mongors3 --shardsvr --nojournal --oplogSize 16 --noauth --rest
+    command: mongod --noprealloc --smallfiles --replSet mongors3 --shardsvr --nojournal --oplogSize 16 --noauth
     environment:
       TERM: xterm
     expose:
